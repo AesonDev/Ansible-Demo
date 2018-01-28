@@ -1,0 +1,14 @@
+---
+  - name: install java
+    yum:
+      name: "{{item}}"
+      state: "latest"
+    with_items:
+    - java-1.8.0-openjdk
+
+  - name: copy root config
+    copy: src="myconfig{{ansible_nodename}}.conf" dest={{dest_folder}}
+  
+  - name: generate a file based on a template 
+    template: src=myTemplate.cfg.j2 dest="{{dest_folder}}/myTemplatedfile.cfg"
+    notify: restart postfix

@@ -1,0 +1,18 @@
+---
+- name: Install common
+  hosts: all
+  remote_user: gaetan
+  become: yes  
+  roles:
+    - common
+
+- name: install ELK  
+  hosts: elk
+  remote_user: gaetan
+  become: yes
+  roles:      
+    - elk
+
+
+
+
